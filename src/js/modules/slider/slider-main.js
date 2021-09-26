@@ -1,12 +1,11 @@
-export default class Slider {
-    // конструируем свойства
-    constructor(page, btns){
-        this.page = document.querySelector(page);
-        this.slides = this.page.children;//слайды
-        this.btns = document.querySelectorAll(btns);
-        this.slideIndex = 1;
+import Slider from './slider';
+
+export default class MainSlider extends Slider {
+    constructor(btns) {
+        super(btns); //получаем доступ к свойствам
     }
 
+    
     showSlides(n) {
         if (n > this.slides.length) {
             this.slideIndex = 1;
@@ -32,9 +31,12 @@ export default class Slider {
 
         this.slides.forEach(slide => {
             slide.style.display = "none";
+            // slide.classList.remove('animated');
+            // slide.classList.remove('slideInUp');
         });
 
         this.slides[this.slideIndex - 1].style.display = "block";
+        this.slides[this.slideIndex].classList.add('animated', 'slideInUp');
     }
 
     plusSlides(n) {
